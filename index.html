@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Study Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo">PS</div>
+            <div class="brand-name">Peak Study</div>
+        </div>
+        <div class="nav-section" id="publicNav">
+            <a href="/about.html" class="nav-link">About</a>
+            <div class="dropdown" id="curriculumDropdown">
+                <a href="#" class="nav-link" onclick="toggleCurriculumDropdown(event)">Curriculum</a>
+                <div class="dropdown-content" id="boardDropdown"></div>
+            </div>
+            <button class="btn btn-signin" onclick="showSignInModal()">Sign In</button>
+            <button class="btn btn-login" onclick="showLoginModal()">Login</button>
+        </div>
+        <div class="nav-section hidden" id="userNav">
+            <div class="user-profile" id="userProfile"></div>
+            <button class="btn btn-close" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar (Hidden initially) -->
+        <div class="sidebar hidden" id="sidebar">
+            <div class="sidebar-item" onclick="showSection('topics')">📚 Topics</div>
+            <div class="sidebar-item" onclick="showSection('classes')">🎓 Classes</div>
+            <div class="sidebar-item" onclick="showSection('tests')">📝 Tests</div>
+            <div class="sidebar-item" onclick="showSection('recorded')">🎥 Recorded</div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area" id="contentArea">
+            <div class="welcome-screen" id="welcomeScreen">
+                <h1>Welcome to Peak Study</h1>
+                <p>Your personalized learning platform</p>
+                <p>Please select your board and subject, then login to get started!</p>
+            </div>
+
+            <!-- Topics Section -->
+            <div class="hidden" id="topicsSection">
+                <div class="content-card">
+                    <h2>📚 Your Topics</h2>
+                    <div class="topic-list" id="topicList"></div>
+                </div>
+            </div>
+
+            <!-- Classes Section -->
+            <div class="hidden" id="classesSection">
+                <div class="content-card">
+                    <h2>🎓 Live & Upcoming Classes</h2>
+                    <div class="class-list" id="classList"></div>
+                </div>
+            </div>
+
+            <!-- Tests Section -->
+            <div class="hidden" id="testsSection">
+                <div class="content-card">
+                    <h2>📝 Topic-wise Tests</h2>
+                    <div class="test-list" id="testList"></div>
+                </div>
+            </div>
+
+            <!-- Recorded Section -->
+            <div class="hidden" id="recordedSection">
+                <div class="content-card">
+                    <h2>🎥 Recorded Classes</h2>
+                    <div class="recorded-list" id="recordedList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h3>Login to Peak Study</h3>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-login" onclick="handleLogin()">Login</button>
+                <button class="btn btn-close" onclick="closeModal('loginModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="modal" id="signInModal">
+        <div class="modal-content">
+            <h3>Sign Up for Peak Study</h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="signInName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="signInEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="signInPassword" placeholder="Create a password">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-login" onclick="handleSignIn()">Sign Up</button>
+                <button class="btn btn-close" onclick="closeModal('signInModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <h3 id="alertTitle">Alert</h3>
+            <p id="alertMessage"></p>
+            <div class="modal-actions">
+                <button class="btn btn-login" onclick="closeModal('alertModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subject Selection Modal -->
+    <div class="modal" id="subjectModal">
+        <div class="modal-content">
+            <h3>Select Subject</h3>
+            <div class="form-group">
+                <label>Choose your subject:</label>
+                <div id="subjectList"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-close" onclick="closeModal('subjectModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+     <script src="main.js"></script>
+</body>
+
+</html>
