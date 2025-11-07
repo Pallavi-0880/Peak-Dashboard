@@ -17,7 +17,7 @@
             <div class="brand-name">Peak Study</div>
         </div>
         <div class="nav-section" id="publicNav">
-            <a href="/about.html" class="nav-link">About</a>
+            <a href="#" class="nav-link">About</a>
             <div class="dropdown" id="curriculumDropdown">
                 <a href="#" class="nav-link" onclick="toggleCurriculumDropdown(event)">Curriculum</a>
                 <div class="dropdown-content" id="boardDropdown"></div>
@@ -35,10 +35,10 @@
     <div class="main-content">
         <!-- Sidebar (Hidden initially) -->
         <div class="sidebar hidden" id="sidebar">
-            <div class="sidebar-item" onclick="showSection('topics')">📚 Topics</div>
-            <div class="sidebar-item" onclick="showSection('classes')">🎓 Classes</div>
-            <div class="sidebar-item" onclick="showSection('tests')">📝 Tests</div>
-            <div class="sidebar-item" onclick="showSection('recorded')">🎥 Recorded</div>
+            <div class="sidebar-item" onclick="showSection('topics')">&#128218; Topics</div>
+            <div class="sidebar-item" onclick="showSection('classes')">&#127891; Classes</div>
+            <div class="sidebar-item" onclick="showSection('tests')">&#128221; Tests</div>
+            <div class="sidebar-item" onclick="showSection('recorded')">&#127909; Recorded</div>
         </div>
 
         <!-- Content Area -->
@@ -52,7 +52,7 @@
             <!-- Topics Section -->
             <div class="hidden" id="topicsSection">
                 <div class="content-card">
-                    <h2>📚 Your Topics</h2>
+                    <h2>&#128218; Your Topics</h2>
                     <div class="topic-list" id="topicList"></div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <!-- Topic Detail Section -->
             <div class="hidden" id="topicDetailSection">
                 <div class="content-card">
-                    <button class="btn btn-close" onclick="backToTopics()" style="margin-bottom: 15px;">← Back to Topics</button>
+                    <button class="btn btn-close" onclick="backToTopics()" style="margin-bottom: 15px;">&#8592; Back to Topics</button>
                     <h2 id="topicDetailTitle"></h2>
                     <p id="topicDetailDesc" style="color: #666; margin-bottom: 20px;"></p>
                     <div id="topicDetailContent"></div>
@@ -70,7 +70,7 @@
             <!-- Classes Section -->
             <div class="hidden" id="classesSection">
                 <div class="content-card">
-                    <h2>🎓 Live & Upcoming Classes</h2>
+                    <h2>&#127891; Live & Upcoming Classes</h2>
                     <div class="class-list" id="classList"></div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
             <!-- Tests Section -->
             <div class="hidden" id="testsSection">
                 <div class="content-card">
-                    <h2>📝 Topic-wise Tests</h2>
+                    <h2>&#128221; Topic-wise Tests</h2>
                     <div class="test-list" id="testList"></div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             <!-- Recorded Section -->
             <div class="hidden" id="recordedSection">
                 <div class="content-card">
-                    <h2>🎥 Recorded Classes</h2>
+                    <h2>&#127909; Recorded Classes</h2>
                     <div class="recorded-list" id="recordedList"></div>
                 </div>
             </div>

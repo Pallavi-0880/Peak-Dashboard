@@ -21,7 +21,7 @@ try {
     console.error('❌ Supabase initialization error:', error);
 }
 
-// Board and Subject Data
+// Board and Subject Data (Only for dropdowns)
 const boardsData = {
     'ISC-XI': ['Math', 'English', 'Economics', 'Physics', 'Chemistry', 'Biology', 'Computer Science', 'Accounts'],
     'ISC-XII': ['Math', 'English', 'Economics', 'Physics', 'Chemistry', 'Biology', 'Computer Science', 'Accounts'],
@@ -34,134 +34,8 @@ const boardsData = {
     'ICSE': ['Math', 'English', 'Economics', 'Physics', 'Chemistry', 'Biology', 'Computer Science']
 };
 
-// Board & Subject Specific Content Data
-const contentDatabase = {
-    // AP Board - All subjects
-    'AP-Math': {
-        topics: [
-            { id: 1, name: 'AP Calculus AB - Limits', description: 'Understanding limits and continuity' },
-            { id: 2, name: 'AP Calculus AB - Derivatives', description: 'Differentiation rules and applications' },
-            { id: 3, name: 'AP Calculus AB - Integrals', description: 'Integration techniques and applications' },
-            { id: 4, name: 'AP Statistics - Probability', description: 'Probability distributions and inference' }
-        ],
-        classes: [
-            { id: 1, name: 'AP Calculus Live Class', time: 'Today at 5:00 PM', instructor: 'Prof. Johnson' },
-            { id: 2, name: 'AP Statistics Workshop', time: 'Tomorrow at 3:00 PM', instructor: 'Prof. Williams' },
-            { id: 3, name: 'AP Math Review Session', time: 'Friday at 4:00 PM', instructor: 'Prof. Davis' }
-        ],
-        tests: [
-            { id: 1, name: 'AP Calculus AB - Mock Test', questions: 45, duration: '90 mins', locked: true },
-            { id: 2, name: 'AP Statistics Quiz', questions: 30, duration: '60 mins', locked: true },
-            { id: 3, name: 'AP Math Practice Exam', questions: 50, duration: '120 mins', locked: true }
-        ],
-        recorded: [
-            { id: 1, name: 'AP Calculus AB Complete Course', duration: '180 mins', locked: true },
-            { id: 2, name: 'AP Statistics Fundamentals', duration: '150 mins', locked: true },
-            { id: 3, name: 'AP Math Exam Strategies', duration: '90 mins', locked: true }
-        ]
-    },
-
-    'AP-Physics': {
-        topics: [
-            { id: 1, name: 'AP Physics - Mechanics', description: 'Kinematics and dynamics' },
-            { id: 2, name: 'AP Physics - Electricity', description: 'Electric circuits and fields' },
-            { id: 3, name: 'AP Physics - Magnetism', description: 'Magnetic fields and induction' }
-        ],
-        classes: [
-            { id: 1, name: 'AP Physics Live Session', time: 'Today at 6:00 PM', instructor: 'Prof. Anderson' }
-        ],
-        tests: [
-            { id: 1, name: 'AP Physics Practice Test', questions: 40, duration: '90 mins', locked: true }
-        ],
-        recorded: [
-            { id: 1, name: 'AP Physics Complete Guide', duration: '200 mins', locked: true }
-        ]
-    },
-    
-    // CBSE-XII - All subjects
-    'CBSE-XII-Math': {
-        topics: [
-            { id: 1, name: 'Relations and Functions', description: 'Types of relations, functions and their properties' },
-            { id: 2, name: 'Inverse Trigonometric Functions', description: 'Domain, range and properties' },
-            { id: 3, name: 'Matrices and Determinants', description: 'Matrix operations and determinant calculations' },
-            { id: 4, name: 'Continuity and Differentiability', description: 'Limits, continuity and derivatives' },
-            { id: 5, name: 'Integration', description: 'Indefinite and definite integrals' },
-            { id: 6, name: 'Vector Algebra', description: 'Vector operations and applications' }
-        ],
-        classes: [
-            { id: 1, name: 'Live Class: Calculus Advanced', time: 'Today at 5:00 PM', instructor: 'Prof. Sharma' },
-            { id: 2, name: 'Live Class: Matrices Deep Dive', time: 'Tomorrow at 3:00 PM', instructor: 'Prof. Gupta' },
-            { id: 3, name: 'Integration Workshop', time: 'Friday at 4:00 PM', instructor: 'Prof. Singh' }
-        ],
-        tests: [
-            { id: 1, name: 'Relations & Functions Test', questions: 20, duration: '45 mins', locked: true },
-            { id: 2, name: 'Calculus Chapter Test', questions: 25, duration: '60 mins', locked: true },
-            { id: 3, name: 'Matrices Assessment', questions: 20, duration: '40 mins', locked: true }
-        ],
-        recorded: [
-            { id: 1, name: 'Relations and Functions Complete', duration: '90 mins', locked: true },
-            { id: 2, name: 'Calculus Masterclass', duration: '120 mins', locked: true },
-            { id: 3, name: 'Matrices and Determinants', duration: '75 mins', locked: true }
-        ]
-    },
-
-    'CBSE-XII-Physics': {
-        topics: [
-            { id: 1, name: 'Electric Charges and Fields', description: 'Coulomb\'s law and electric field' },
-            { id: 2, name: 'Current Electricity', description: 'Ohm\'s law and circuits' },
-            { id: 3, name: 'Magnetism', description: 'Magnetic effects of current' }
-        ],
-        classes: [
-            { id: 1, name: 'CBSE Physics Live Class', time: 'Today at 4:00 PM', instructor: 'Prof. Verma' }
-        ],
-        tests: [
-            { id: 1, name: 'Physics Chapter Test', questions: 30, duration: '60 mins', locked: true }
-        ],
-        recorded: [
-            { id: 1, name: 'CBSE Physics Course', duration: '180 mins', locked: true }
-        ]
-    },
-
-    // ISC-XII - All subjects
-    'ISC-XII-Math': {
-        topics: [
-            { id: 1, name: 'Relations and Functions', description: 'Relations, types of functions' },
-            { id: 2, name: 'Algebra', description: 'Matrices, determinants and linear equations' },
-            { id: 3, name: 'Calculus', description: 'Differentiation and integration' },
-            { id: 4, name: 'Probability', description: 'Probability distributions and theorems' }
-        ],
-        classes: [
-            { id: 1, name: 'ISC Math Live Class', time: 'Today at 5:00 PM', instructor: 'Prof. Mehta' },
-            { id: 2, name: 'ISC Calculus Workshop', time: 'Tomorrow at 3:00 PM', instructor: 'Prof. Patel' }
-        ],
-        tests: [
-            { id: 1, name: 'ISC Math Chapter Test', questions: 20, duration: '45 mins', locked: true },
-            { id: 2, name: 'ISC Probability Quiz', questions: 15, duration: '30 mins', locked: true }
-        ],
-        recorded: [
-            { id: 1, name: 'ISC Math Full Course', duration: '180 mins', locked: true },
-            { id: 2, name: 'ISC Calculus Basics', duration: '90 mins', locked: true }
-        ]
-    },
-
-    // Default fallback content
-    'default': {
-        topics: [
-            { id: 1, name: 'Getting Started', description: 'Introduction to the subject' },
-            { id: 2, name: 'Fundamental Concepts', description: 'Basic concepts and principles' },
-            { id: 3, name: 'Advanced Topics', description: 'In-depth study of advanced concepts' }
-        ],
-        classes: [
-            { id: 1, name: 'Introduction Class', time: 'Today at 5:00 PM', instructor: 'Prof. Smith' }
-        ],
-        tests: [
-            { id: 1, name: 'Basic Assessment', questions: 20, duration: '30 mins', locked: true }
-        ],
-        recorded: [
-            { id: 1, name: 'Subject Overview', duration: '60 mins', locked: true }
-        ]
-    }
-};
+// NOTE: All content (topics, classes, tests, videos) is now fetched from Supabase database
+// No hardcoded content in frontend - everything is dynamic from backend
 
 // Fetch content from Supabase database
 async function getContentFromDatabase(board, subject, contentType) {
@@ -602,17 +476,24 @@ function showDashboard() {
     showSection('topics');
 }
 
-// Show Section
+// Show Section - Fixed event handling
 function showSection(section) {
+    console.log('📂 Switching to section:', section);
+    
+    // Hide all content sections
     document.querySelectorAll('.content-area > div:not(.welcome-screen)').forEach(el => {
         el.classList.add('hidden');
     });
-
+    
+    // Remove active class from all sidebar items
     document.querySelectorAll('.sidebar-item').forEach(item => {
         item.classList.remove('active');
     });
-
-    event.target.classList.add('active');
+    
+    // Add active class to clicked item (if event target exists)
+    if (window.event && window.event.target) {
+        window.event.target.classList.add('active');
+    }
 
     const sectionMap = {
         'topics': 'topicsSection',
@@ -621,8 +502,14 @@ function showSection(section) {
         'recorded': 'recordedSection'
     };
 
-    document.getElementById(sectionMap[section]).classList.remove('hidden');
-    loadContent(section);
+    const sectionId = sectionMap[section];
+    
+    if (sectionId) {
+        document.getElementById(sectionId).classList.remove('hidden');
+        loadContent(section);
+    } else {
+        console.error('❌ Invalid section:', section);
+    }
 }
 
 // Load Content - Fetch from Supabase Database
